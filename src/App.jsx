@@ -4,6 +4,7 @@ import Inicio from './componentes/Inicio/pagInicio.jsx';
 import Reportes from './componentes/Reportes/reportes.jsx';
 import Registro from './componentes/Registro/registro.jsx';
 import ForgotPasswordPage from "./componentes/Password/lostPassword.jsx";
+import PerfilPage from "./componentes/Perfil/perfil.jsx";
 
 function App() {
     return (
@@ -14,6 +15,7 @@ function App() {
                 <Route path="/reportes" element={<Reportes />} />
                 <Route path="/registrarse" element={<Registro />} />
                 <Route path="/forgot" element={<ForgotPasswordPage />} />
+                <Route path="/perfil" element={<PerfilPage />} />
             </Routes>
         </Router>
     );

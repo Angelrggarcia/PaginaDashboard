@@ -1,6 +1,57 @@
 import React from 'react';
 import Mayo from '../../assets/mayonesa.jpeg';
-import Grafico from '../../assets/grafico.png';
+import {notificationsData} from "../../variablesTemp/notificaciones.jsx";
+import {messagesData} from "../../variablesTemp/mensajes.jsx";
+import './inicio.css';
+
+// Datos simulados para la red
+const networkData = {
+    labels: ['Nodo 1', 'Nodo 2', 'Nodo 3', 'Nodo 4', 'Nodo 5'],
+    stability: [85, 92, 78, 95, 88],
+    latency: [45, 32, 55, 28, 40],
+    throughput: [120, 150, 90, 180, 130]
+};
+
+    const NetworkChart = ({ title, data, labels, metric, context }) => {
+    const maxValue = Math.max(...data);
+
+    return (
+        <div className="bg-white/10 p-4 rounded-2xl shadow-md">
+            <h3 className="text-lg font-bold mb-4">{title}</h3>
+            <div className="h-48 flex items-end gap-2 mb-4">
+                {data.map((value, index) => (
+                    <div
+                        key={index}
+                        className="flex-1 bg-[#12F59B]/30 hover:bg-[#12F59B]/50 transition-all rounded-t-lg relative group"
+                        style={{ height: `${(value / maxValue) * 80}%` }}
+                    >
+                        <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 bg-gray-900 px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity">
+                            {labels[index]}: {value}{metric}
+                        </div>
+                    </div>
+                ))}
+            </div>
+            <p className="text-sm text-gray-300">{context}</p>
+        </div>
+    );
+};
+
+const ListSection = ({ title, items }) => {
+    return (
+        <div className="bg-white/10 p-4 rounded-2xl shadow-md h-full">
+            <h3 className="text-lg font-bold mb-4">{title}</h3>
+            <div className="space-y-3">
+                {items.map((item) => (
+                    <div key={item.id} className="bg-gray-900 p-3 rounded-xl cursor-pointer hover:bg-gray-800 transition">
+                        <h4 className="font-bold text-[#12F59B]">{item.title}</h4>
+                        <p className="text-sm">{item.content}</p>
+                        <span className="text-xs text-gray-300">{item.date}</span>
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
+};
 
 const Contenido = () => {
     return (
@@ -20,46 +71,42 @@ const Contenido = () => {
             </aside>
 
             {/* Main Content */}
-            <main
-                className="flex-1 bg-gray-900/60 p-6 overflow-y-auto space-y-6 bg-[#000000]/40 rounded-tl-2xl rounded-bl-2xl custom-scrollbar">
-                {/* Header */}
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                    <div className="bg-white/10 p-4 rounded-2xl shadow-md font-bold">Reportes</div>
-                    <div className="bg-white/10 p-4 rounded-2xl shadow-md font-bold">Roles</div>
-                    <div className="bg-white/10 p-4 rounded-2xl shadow-md font-bold">Noticias y actualizaciones</div>
+            <main className="flex-1 bg-gray-900/60 p-6 overflow-y-auto space-y-6 bg-[#000000]/40 rounded-tl-2xl rounded-bl-2xl custom-scrollbar">
+                {/* Sección de Gráficos de Red */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <NetworkChart
+                        title="Estabilidad de la Red"
+                        data={networkData.stability}
+                        labels={networkData.labels}
+                        metric="%"
+                        context="Estabilidad promedio de la red: 87.6%"
+                    />
+                    <NetworkChart
+                        title="Latencia de Nodos"
+                        data={networkData.latency}
+                        labels={networkData.labels}
+                        metric="ms"
+                        context="Latencia promedio: 40ms (Objetivo: <50ms)"
+                    />
+                    <NetworkChart
+                        title="Rendimiento de Tráfico"
+                        data={networkData.throughput}
+                        labels={networkData.labels}
+                        metric="Mbps"
+                        context="Capacidad máxima: 200Mbps por nodo"
+                    />
                 </div>
 
-                {/* Gráfico */}
-                <div className="bg-white/10 p-4 rounded-2xl shadow-md">
-                    <h3 className="text-lg mb-2 font-bold">Red al momento</h3>
-                    <img src={Grafico} alt="Gráfico" className="w-full h-full object-contain rounded cursor-pointer"/>
-                </div>
-
-                {/* Notificaciones y Mensajes */}
+                {/* Sección de Notificaciones y Mensajes */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {/* Notificaciones */}
-                    <div className="bg-white/10 p-4 rounded-2xl shadow-md">
-                        <h3 className="text-lg mb-4 font-bold">Notificaciones</h3>
-                        {[1, 2].map((_, i) => (
-                            <div key={i} className="bg-gray-900 p-3 rounded-xl mb-3 cursor-pointer">
-                                <h4 className="font-bold text-[#12F59B]">Título de Notificación</h4>
-                                <p className="text-sm">Bla bla bla</p>
-                                <span className="text-xs text-gray-300">18 - Abril - 2025</span>
-                            </div>
-                        ))}
-                    </div>
-
-                    {/* Mensajes */}
-                    <div className="bg-white/10 p-4 rounded-2xl shadow-md">
-                        <h3 className="text-lg mb-4 font-bold">Mensajes</h3>
-                        {[1, 2].map((_, i) => (
-                            <div key={i} className="bg-gray-900 p-3 rounded-xl mb-3 cursor-pointer">
-                                <h4 className="font-bold text-[#12F59B]">Título de Mensaje</h4>
-                                <p className="text-sm">Bla bla bla</p>
-                                <span className="text-xs text-gray-300">16 - Abril - 2025</span>
-                            </div>
-                        ))}
-                    </div>
+                    <ListSection
+                        title="Notificaciones"
+                        items={notificationsData}
+                    />
+                    <ListSection
+                        title="Mensajes"
+                        items={messagesData}
+                    />
                 </div>
             </main>
         </div>
