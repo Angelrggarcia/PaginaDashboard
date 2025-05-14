@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Mayo from '../../assets/mayonesa.jpeg';
 import {notificationsData} from "../../variablesTemp/notificaciones.jsx";
 import {messagesData} from "../../variablesTemp/mensajes.jsx";
 import './inicio.css';
+
 
 // Datos simulados para la red
 const networkData = {
@@ -12,7 +13,7 @@ const networkData = {
     throughput: [120, 150, 90, 180, 130]
 };
 
-    const NetworkChart = ({ title, data, labels, metric, context }) => {
+const NetworkChart = ({ title, data, labels, metric, context }) => {
     const maxValue = Math.max(...data);
 
     return (
@@ -34,41 +35,33 @@ const networkData = {
             <p className="text-sm text-gray-300">{context}</p>
         </div>
     );
+
+
 };
 
 const ListSection = ({ title, items }) => {
-    return (
-        <div className="bg-white/10 p-4 rounded-2xl shadow-md h-full">
-            <h3 className="text-lg font-bold mb-4">{title}</h3>
-            <div className="space-y-3">
-                {items.map((item) => (
-                    <div key={item.id} className="bg-gray-900 p-3 rounded-xl cursor-pointer hover:bg-gray-800 transition">
-                        <h4 className="font-bold text-[#12F59B]">{item.title}</h4>
-                        <p className="text-sm">{item.content}</p>
-                        <span className="text-xs text-gray-300">{item.date}</span>
-                    </div>
-                ))}
-            </div>
-        </div>
+    return ( <div className="bg-white/10 p-4 rounded-2xl shadow-md h-full"> <h3 className="text-lg font-bold mb-4">{title}</h3> <div className="space-y-3">
+            {items.map((item) => ( <div key={item.id} className="bg-gray-900 p-3 rounded-xl cursor-pointer hover:bg-gray-800 transition"> <h4 className="font-bold text-[#12F59B]">{item.title}</h4> <p className="text-sm">{item.content}</p> <span className="text-xs text-gray-300">{item.date}</span> </div>
+            ))} </div> </div>
     );
 };
 
 const Contenido = () => {
+    useEffect(() => {
+        fetch('/api/graph.php?type=port_bits&id=233239&legend=no&height=300&width=750&period=31536000&loading=lazy&format=json')
+            .then(response => response.json())
+            .then(data => {
+                console.log('Datos reales obtenidos:', data);
+            })
+            .catch(error => {
+                console.error('Error al obtener los datos:', error);
+            });
+    }, []);
+
     return (
         <div className="flex h-130 text-white font-sans">
             {/* Sidebar */}
-            <aside className="w-64 bg-gray-800/70 py-10 flex flex-col items-center justify-center rounded-2xl">
-                <img src={Mayo} alt="Perfil" className="w-24 h-24 rounded-full mb-4 border-4 border-white" />
-                <div className="text-center">
-                    <h2 className="text-lg font-semibold">Angel García</h2>
-                    <p className="text-sm">XCIEN0134566</p>
-                    <p className="mt-2 text-xs font-bold">REY DEL MUNDO</p>
-                    <p className="text-sm">JEFE</p>
-                    <p className="text-sm italic mt-2">CEO</p>
-                </div>
-                <button className="mt-6 px-4 py-2 bg-green-600 rounded hover:bg-[#0B744F] cursor-pointer">Logout</button>
-                <p className="mt-auto text-xs text-gray-300 pt-6">Último inicio de sesión 25 Abril 2025</p>
-            </aside>
+            <aside className="w-64 bg-gray-800/70 py-10 flex flex-col items-center justify-center rounded-2xl"> <img src={Mayo} alt="Perfil" className="w-24 h-24 rounded-full mb-4 border-4 border-white" /> <div className="text-center"> <h2 className="text-lg font-semibold">Angel García</h2> <p className="text-sm">XCIEN0134566</p> <p className="mt-2 text-xs font-bold">REY DEL MUNDO</p> <p className="text-sm">JEFE</p> <p className="text-sm italic mt-2">CEO</p> </div> <button className="mt-6 px-4 py-2 bg-green-600 rounded hover:bg-[#0B744F] cursor-pointer">Logout</button> <p className="mt-auto text-xs text-gray-300 pt-6">Último inicio de sesión 25 Abril 2025</p> </aside>
 
             {/* Main Content */}
             <main className="flex-1 bg-gray-900/60 p-6 overflow-y-auto space-y-6 bg-[#000000]/40 rounded-tl-2xl rounded-bl-2xl custom-scrollbar">
@@ -111,6 +104,8 @@ const Contenido = () => {
             </main>
         </div>
     );
+
+
 };
 
 export default Contenido;
