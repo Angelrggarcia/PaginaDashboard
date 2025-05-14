@@ -1,6 +1,6 @@
 import TopBar from '../../assets/Topbar/topBar.jsx'
 import Fondo from "../../assets/pagInicio.png";
-import { reportes } from "../../variablesTemp/reportes.jsx"
+import { reportes } from "../../Variables/reportes.jsx"
 import Campanita from "../../assets/Campanita/notificationPopup.jsx";
 function Reportes() {
     const prioridadColor = {

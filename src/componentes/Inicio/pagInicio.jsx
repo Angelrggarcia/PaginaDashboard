@@ -1,7 +1,7 @@
 import fondo from "../../assets/pagInicio.png";
 import TopBar from "../../assets/Topbar/topBar.jsx";
 import Campanita from "../../assets/Campanita/notificationPopup.jsx";
-import Contenido from "../../assets/Inicio/inicio.jsx";
+import Contenido from "../../assets/Inicio/contenido.jsx";
 
 function Inicio() {
 
