@@ -19,7 +19,7 @@ function TopBar() {
           <div className="md:hidden">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="text-gray-300 hover:text-white focus:outline-none"
+              className="cursor-pointer text-gray-300 hover:text-white focus:outline-none"
             >
               {mobileMenuOpen ? (
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -74,7 +74,7 @@ function TopBar() {
             Perfil
           </a>
           <a
-            href="/logout"
+            href="/"
             className="block mt-2 bg-red-600 hover:bg-red-700 text-white text-sm font-semibold px-4 py-2 rounded-lg transition duration-200"
           >
             Cerrar Sesión
