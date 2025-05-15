@@ -139,7 +139,7 @@ function Perfil() {
           <div className="bg-opacity-90 rounded-3xl shadow-xl overflow-hidden">
             {/* Sección superior del perfil */}
             <div className="bg-gray-900 p-6 text-white relative">
-              <div className="flex flex-col md:flex-row items-center">
+              <div className="flex flex-col md:flex-row items-center text-center md:text-left">
                 <div className="relative mb-4 md:mb-0 md:mr-6">
                   <img
                     src={Avatar}
@@ -165,7 +165,7 @@ function Perfil() {
                     }}
                   />
                 </div>
-                <div className="text-center md:text-left">
+                <div className=" text-center md:text-left">
                   {isEditing ? (
                     <input
                       type="text"
