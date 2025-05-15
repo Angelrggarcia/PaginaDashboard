@@ -17,7 +17,10 @@ function Login() {
     };
 
     return (
-        <div className="flex flex-col md:flex-row h-screen w-full text-white font-sans bg-gray-900 overflow-hidden">
+        
+        <div className="flex flex-col md:flex-row h-screen w-full text-white font-sans overflow-hidden"
+  style={{ backgroundColor: "#000000" }}
+        >
             {/* Lado izquierdo - Visible solo en pantallas medianas/grandes */}
             <div className="hidden md:flex md:w-1/2 lg:w-3/4 h-full items-center justify-center relative">
                 {/* Fondo animado */}
