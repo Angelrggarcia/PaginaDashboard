@@ -2,7 +2,7 @@ export const CustomTooltip = ({ active, payload, label }) => {
     if (active && payload && payload.length) {
         return (
             <div style={{
-                backgroundColor: '#1f2937', // gris oscuro
+                backgroundColor: '#1f2937',
                 color: '#ffffff',
                 padding: '10px',
                 borderRadius: '8px',

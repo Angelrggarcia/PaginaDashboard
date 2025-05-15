@@ -5,6 +5,7 @@ import Reportes from './componentes/Reportes/reportes.jsx';
 import Registro from './componentes/Registro/registro.jsx';
 import ForgotPasswordPage from "./componentes/Password/lostPassword.jsx";
 import PerfilPage from "./componentes/Perfil/perfil.jsx";
+import LoadingSpinner from "./assets/LoadingSpinner/loadingSpinner.jsx";
 
 function App() {
     return (
@@ -16,6 +17,7 @@ function App() {
                 <Route path="/registrarse" element={<Registro />} />
                 <Route path="/forgot" element={<ForgotPasswordPage />} />
                 <Route path="/perfil" element={<PerfilPage />} />
+                <Route path="/load" element={<LoadingSpinner />} />
             </Routes>
         </Router>
     );
