@@ -6,6 +6,7 @@ import Registro from './componentes/Registro/registro.jsx';
 import ForgotPasswordPage from "./componentes/Password/lostPassword.jsx";
 import PerfilPage from "./componentes/Perfil/perfil.jsx";
 import LoadingSpinner from "./assets/LoadingSpinner/loadingSpinner.jsx";
+import AdminUsuarios from "./componentes/AdminUsuarios/AdminUsuarios.jsx";
 
 function App() {
     return (
@@ -18,6 +19,8 @@ function App() {
                 <Route path="/forgot" element={<ForgotPasswordPage />} />
                 <Route path="/perfil" element={<PerfilPage />} />
                 <Route path="/load" element={<LoadingSpinner />} />
+                <Route path="/adminusuarios" element={<AdminUsuarios />} />
+
             </Routes>
         </Router>
     );
